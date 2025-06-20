@@ -1,0 +1,29 @@
+name: proxpertgarageV2
+services:
+  db:
+    image: postgres:latest
+    container_name: postgreSQL_V2
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres_V2
+      POSTGRES_PASSWORD: rrl2425
+    volumes:
+      - postgres_data:/var/lib/postgresqlV2/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgAdmin4_V2
+    restart: always
+    links: 
+      - db
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: robertohamer13@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: rrl2425
+    volumes:
+      - pgadmin_data:/var/lib/pgadminV2
+volumes:
+  postgres_data:
+  pgadmin_data:
